@@ -43,7 +43,6 @@ window.addEventListener('DOMContentLoaded', function() {
             seconds = Math.floor((t/1000) % 60), 
             minutes = Math.floor((t/1000/60) % 60),
             hours = Math.floor((t/(1000*60*60)));
-        // hours = Math.floor((t/1000/60/60) % 24)
 
         return {
             'total' : t,
@@ -57,21 +56,21 @@ window.addEventListener('DOMContentLoaded', function() {
         let timer = document.getElementById(id),
             hours = timer.querySelector('.hours'),
             minutes = timer.querySelector('.minutes'),
-            seconds = timer.querySelector('.seconds');
+            seconds = timer.querySelector('.seconds'),
             timeInterval = setInterval(updateClock, 1000);
 
         function updateClock() {
             let t = getTimeRemaining(endtime);
 
-            function Zero(num) {
-                if (num <= 9) {
-                    return '0' + num;
-                } else return num;
-            };
+            function addZero(num) {
+                        if (num <= 9) {
+                            return '0' + num;
+                        } else return num;
+                };
 
-            hours.textContent = Zero(t.hours);
-            minutes.textContent = Zero(t.minutes);
-            seconds.textContent = Zero(t.seconds);
+            hours.textContent = addZero(t.hours);
+            minutes.textContent = addZero(t.minutes);
+            seconds.textContent = addZero(t.seconds);
 
             if (t.total <= 0) {
                 clearInterval(timeInterval);
